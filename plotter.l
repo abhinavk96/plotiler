@@ -8,6 +8,8 @@ digits {digit}+
 fract ([\.]{digit}+)?
 exp ([eE][\+\-]?{digits})?
 num {digits}{fract}{exp}
+letter [a-zA-Z_]
+var {letter}({letter}|{digit})*
 %%
 
 ("print") {return print;}
@@ -20,8 +22,8 @@ num {digits}{fract}{exp}
 ("pow")   {return POW;}
 ("log")   {return LOG;}
 ("exit")  {return EXIT;}
-[a-zA-Z] {return VAR;}
-{num}    {return NUM;}
+{var}     {return VAR;}
+{num}     {return NUM;}
 [ \t\n]  ;
 [+-*/()\[\],;]   {return yytext[0];}
 
