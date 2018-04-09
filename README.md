@@ -12,5 +12,5 @@ A Compiler Design Project which makes plotting easy !
 
 ## How To Set UP
 
-
+For ubuntu, `python3-tkinter` needs to be installed.
 
