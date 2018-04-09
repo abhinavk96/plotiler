@@ -22,6 +22,9 @@ var {letter}({letter}|{digit})*
 ("pow")   {return POW;}
 ("log")   {return LOG;}
 ("exit")  {return EXIT;}
+("circle") {return CIRCLE;}
+("parabola") {return PARABOLA;}
+("ellipse")  {return ELLIPSE;}
 {var}     {return VAR;}
 {num}     {return NUM;}
 [ \t\n]  ;

@@ -10,5 +10,8 @@
 #define EXIT 9
 #define VAR 10
 #define NUM 11
+#define CIRCLE 12
+#define PARABOLA 13
+#define ELLIPSE 14
 
 
