@@ -1,6 +1,6 @@
 %{
 #include"plotter.h"
-#include"y.tab.h"
+//#include"y.tab.h"
 
 %}
 digit [0-9]
@@ -28,8 +28,8 @@ var {letter}({letter}|{digit})*
 {var}     {return VAR;}
 {num}     {return NUM;}
 [ \t\n]  ;
-[+-*/()\[\],;]   {return yytext[0];}
+[\+\-\*\/\(\)\[\]\,\;]   {return yytext[0];}
 
-.        {ECHO;yyerror("No match found");}
+.        {ECHO;printf("No match found");}
 %%
 int yywrap(){return 1;}
