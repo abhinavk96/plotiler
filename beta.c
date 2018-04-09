@@ -1,8 +1,16 @@
 #include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
 
 int main ()
 
 {
-	system("python3 beta.py");
+	
+	int t = fork();
+	if (t==0) {
+	system("ls -a");
+	}
+	else {
+		printf("Thanks!");
+	}
 }
