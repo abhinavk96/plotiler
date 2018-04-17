@@ -12,19 +12,20 @@ letter [a-zA-Z_]
 var {letter}({letter}|{digit})*
 %%
 
-("print") {return print;}
-("help")  {return help;}
-("plot")  {return plot;}
+("print") {return Print;}
+("help")  {return Help;}
+("plot")  {return Plot;}
 ("sin")   {return SIN;}
 ("cos")   {return COS;}
 ("tan")   {return TAN;}
 ("abs")   {return ABS;}
 ("pow")   {return POW;}
 ("log")   {return LOG;}
-("exit")  {return EXIT;}
-("circle") {return CIRCLE;}
-("parabola") {return PARABOLA;}
-("ellipse")  {return ELLIPSE;}
+("exp")   {return EXP;}
+("exit")  {return Exit;}
+("circle") {return Circle;}
+("parabola") {return Parabola;}
+("ellipse")  {return Ellipse;}
 {var}     {return VAR;}
 {num}     {return NUM;}
 [ \t\n]  ;

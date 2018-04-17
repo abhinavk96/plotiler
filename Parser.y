@@ -2,38 +2,39 @@
 void yyerror (char *s);
 #include <bits/stdc++.h>     
 using namespace std;
-map<string,double *> symbols;
+map<string,vector<double> > symbols;
 
 
 %}
 
-%union {int num; string id;}        
+%union {vector<double> num; string id;}        
 %start Line
-%token print
-%token exit
-%token print
-%token help
-%token plot
+%token Print
+%token Help
+%token Plot
 %token SIN
 %token COS
 %token TAN
 %token ABS
 %token POW
 %token LOG
-%token EXIT
+%token EXP
+%token Exit
 %token <id>VAR
 %token <num>NUM
-%token CIRCLE
-%token PARABOLA
-%token ELLIPSE
+%token Circle
+%token Parabola
+%token Ellipse
+%type <num>  Expr Term Field Var
+%type <id>  Assignment Command
 
 %%
-Line :  Var '=' Expr ';'
-`	|  Line  Var = Expr ';'
+Line :     Assignment ';'
+	|  Line  Assignment ';'
 	|  Print Expr ';' 
 	|  Line Print Expr ';' 
-	|  Plot Expr , Expr  ';' 
-	|  Line Plot  Expr , Expr  ';' 
+	|  Plot Expr ',' Expr  ';' 
+	|  Line Plot  Expr ',' Expr  ';' 
 	|  Circle   Expr   ';' 
 	|  Line Circle   Expr   ';' 
 	|  Parabola  Expr  ';' 
@@ -42,11 +43,47 @@ Line :  Var '=' Expr ';'
 	|  Line Ellipse  Expr  ';' 
 	|  Help ';' 
 	|  Line Help ';'
-	|  Help Command';' 
-	|  Line Help Command';' 
+	|  Help Command ';' 
+	|  Line Help Command ';' 
         |  Exit ';' 
 	| Line Exit ';'
 	;
+
+Assignment : Var '=' Expr 
+        ;
+Expr  : Expr '+' Term 
+        | Expr '-' Term 
+        | Term
+        ;
+Term : Term '*' Field 
+        | Term '/' Field 
+        | Field
+        ;
+Field : '(' Expr ')'
+        | Var 
+        | NUM 
+        | COS  Expr  
+        | SIN  Expr  
+        | TAN  Expr  
+        | ABS Expr  
+        | POW  Expr ',' Expr  
+        | LOG Expr
+        ; 
+ Var : VAR 
+        | VAR '[' Expr ',' Expr ']' 
+        | VAR '[' Expr ',' Expr ',' Expr ']'
+        ;
+Command : Plot 
+        | Print 
+        | Help 
+        | Exit 
+        | SIN 
+        | COS 
+        | TAN 
+        | ABS 
+        | EXP 
+        | POW
+        ;
 
 
 
