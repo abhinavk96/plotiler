@@ -1,0 +1,5 @@
+struct vecto {
+        int len;
+        double arr[1000];
+        
+};

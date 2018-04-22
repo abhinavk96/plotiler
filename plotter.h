@@ -14,5 +14,3 @@
 #define Parabola 13
 #define Ellipse 14
 #define EXP 15
-
-

@@ -1,13 +1,14 @@
 %{
-#include"plotter.h"
-//#include"y.tab.h"
 
+#include "y.tab.h"
+void yyerror (char *s);
+int yylex();
 %}
 digit [0-9]
 digits {digit}+
 fract ([\.]{digit}+)?
 exp ([eE][\+\-]?{digits})?
-num {digits}{fract}{exp}
+num [\+\-]?{digits}{fract}{exp}
 letter [a-zA-Z_]
 var {letter}({letter}|{digit})*
 %%
@@ -26,10 +27,10 @@ var {letter}({letter}|{digit})*
 ("circle") {return Circle;}
 ("parabola") {return Parabola;}
 ("ellipse")  {return Ellipse;}
-{var}     {return VAR;}
-{num}     {return NUM;}
+{var}     {yylval.id=yytext;return VAR;}
+{num}     {yylval.number = atof(yytext);return NUM;}
 [ \t\n]  ;
-[\+\-\*\/\(\)\[\]\,\;]   {return yytext[0];}
+[\+\-\*\/\(\)\[\]\,\;\=]   {return yytext[0];}
 
 .        {ECHO;printf("No match found");}
 %%
