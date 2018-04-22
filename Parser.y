@@ -47,8 +47,6 @@ map<char *,char * > ::iterator it1;
 %%
 Line :     Assignment ';'
 	|  Line  Assignment ';'
-	|  Declaration ';'
-	|  Line Declaration ';'
 	|  Print Expr ';' {/*cout<<$2.len<<endl;*/cout<<"[ ";for(int i=0;i<$2.len;i++){cout<<$2.arr[i]<<" ";}cout<<"]\n";}
 	|  Line Print Expr ';' {/*cout<<$3.len<<endl;*/cout<<"[ ";for(int i=0;i<$3.len;i++){cout<<$3.arr[i]<<" ";}cout<<"]\n";}
 	|  Plot Expr ',' Expr  ';' {plot_func($2,$4);}
@@ -76,10 +74,9 @@ Assignment : VAR '=' Expr {string s="";
                 }
                 s+=$1[i];
         }
-        
-        //cout<<s<<"lhhhh"<<endl;
-        
         symbols[s]=$3;}
+        | VAR '=' '[' Expr ',' Expr ']' {dec($1,$4,$6);}
+        | VAR '=' '[' Expr ',' Expr ',' Expr ']' {dec_step($1,$4,$6,$8);}
         ;
 Expr  : Expr '+' Term {
                 if(!($1.len==1||$3.len==1)&&($1.len!=$3.len)){
@@ -215,9 +212,7 @@ Field : '(' Expr ')'{$$=$2;}
         | LOG Expr  {struct vecto v;v.len=$2.len;for(int i=0;i<$2.len;i++){v.arr[i]=log($2.arr[i]);}$$=v;} 
         | EXP Expr  {struct vecto v;v.len=$2.len;for(int i=0;i<$2.len;i++){v.arr[i]=exp($2.arr[i]);}$$=v;} 
         ; 
- Declaration : VAR '=' '[' Expr ',' Expr ']' {dec($1,$4,$6);}
-        | VAR '=' '[' Expr ',' Expr ',' Expr ']' {dec_step($1,$4,$6,$8);}
-        ;
+ 
 Command : Plot {$$=help["Plot"];}
         | Print {$$=help["Print"];}
         | Help {$$=help["Help"];}
@@ -242,7 +237,6 @@ void dec(char *id,struct vecto v1,struct vecto v2) {
         vecto v;
         
         v.len=(v2.arr[0]-v1.arr[0]);
-        //cout<<v.len<<endl;
         for(int i=0;i<v.len;i++){
                 v.arr[i]=i+v1.arr[0];
         }
@@ -256,9 +250,6 @@ void dec(char *id,struct vecto v1,struct vecto v2) {
                 }
                 s+=id[i];
         }
-        
-        //cout<<s<<"lhhhh"<<endl;
-        
         symbols[s]=v;
         
         
