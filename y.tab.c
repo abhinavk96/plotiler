@@ -1338,13 +1338,13 @@ yyreduce:
     {
         case 6:
 #line 52 "Parser.y" /* yacc.c:1646  */
-    {cout<<(yyvsp[-1].num).len<<endl;cout<<"[ ";for(int i=0;i<(yyvsp[-1].num).len;i++){cout<<(yyvsp[-1].num).arr[i]<<" ";}cout<<"]\n";}
+    {/*cout<<$2.len<<endl;*/cout<<"[ ";for(int i=0;i<(yyvsp[-1].num).len;i++){cout<<(yyvsp[-1].num).arr[i]<<" ";}cout<<"]\n";}
 #line 1343 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
 #line 53 "Parser.y" /* yacc.c:1646  */
-    {cout<<(yyvsp[-1].num).len<<endl;cout<<"[ ";for(int i=0;i<(yyvsp[-1].num).len;i++){cout<<(yyvsp[-1].num).arr[i]<<" ";}cout<<"]\n";}
+    {/*cout<<$3.len<<endl;*/cout<<"[ ";for(int i=0;i<(yyvsp[-1].num).len;i++){cout<<(yyvsp[-1].num).arr[i]<<" ";}cout<<"]\n";}
 #line 1349 "y.tab.c" /* yacc.c:1646  */
     break;
 

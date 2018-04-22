@@ -49,8 +49,8 @@ Line :     Assignment ';'
 	|  Line  Assignment ';'
 	|  Declaration ';'
 	|  Line Declaration ';'
-	|  Print Expr ';' {cout<<$2.len<<endl;cout<<"[ ";for(int i=0;i<$2.len;i++){cout<<$2.arr[i]<<" ";}cout<<"]\n";}
-	|  Line Print Expr ';' {cout<<$3.len<<endl;cout<<"[ ";for(int i=0;i<$3.len;i++){cout<<$3.arr[i]<<" ";}cout<<"]\n";}
+	|  Print Expr ';' {/*cout<<$2.len<<endl;*/cout<<"[ ";for(int i=0;i<$2.len;i++){cout<<$2.arr[i]<<" ";}cout<<"]\n";}
+	|  Line Print Expr ';' {/*cout<<$3.len<<endl;*/cout<<"[ ";for(int i=0;i<$3.len;i++){cout<<$3.arr[i]<<" ";}cout<<"]\n";}
 	|  Plot Expr ',' Expr  ';' {plot_func($2,$4);}
 	|  Line Plot  Expr ',' Expr  ';' {plot_func($3,$5);}
 	|  Circle   Expr   ';' {plot_circle($2);}

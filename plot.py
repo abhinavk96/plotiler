@@ -51,7 +51,7 @@ if plotMode == 'parabola':
 		plt.show()
 	except:
 		print('Incorrect usage')
-if plotMode == 'elipse':
+if plotMode == 'ellipse':
 	try:
 		a = float(sys.argv[2])
 		b=float(sys.argv[3])
